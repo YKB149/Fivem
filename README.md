@@ -1,6 +1,8 @@
+(documentation/purposal for advance and powerful discord bot, contant @ykblmao on discord for purchase)
+
 # FiveM Discord Bot
 
-A powerful Discord bot for managing FiveM servers with QBCore and txAdmin integration. This bot provides comprehensive server management capabilities through Discord slash commands, with a focus on security, stability, and ease of use.
+A advance & powerful Discord bot for managing FiveM servers with QBCore and txAdmin integration. This bot provides comprehensive server management capabilities through Discord slash commands, with a focus on security, stability, and ease of use.
 
 ## Key Features
 
@@ -351,28 +353,6 @@ If you need help with the bot:
 - txAdmin API
 - SQLite/MySQL Database
 
-#### Project Structure
-```
-src/
-├── commands/         # Command implementations
-├── events/          # Event handlers
-├── utils/           # Utility functions
-└── managers/        # Feature managers
-
-tests/               # Test suites
-docs/               # Documentation
-```
-
-#### Setup for Development
-
-1. Clone the repository
-2. Install dependencies
-3. Copy .env.example to .env
-4. Configure environment variables
-5. Run in development mode:
-   ```bash
-   npm run dev
-   ```
 
 ### Documentation
 
@@ -393,9 +373,6 @@ Detailed documentation is available for various aspects of the bot:
 - txAdmin API usage and endpoints
 - Discord API features and limitations
 
-For more detailed documentation on advanced features and internals, see:
-- `docs/advanced_features.md` - Detailed technical documentation
-- `SETUP_AND_USAGE.txt` - Quick start guide
 
 ## Support and Community
 
