@@ -50,43 +50,6 @@ Each feature includes:
 - FiveM Server with txAdmin
 - QBCore Framework
 
-## Installation
-
-1. Clone this repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Copy `.env.example` to `.env` and fill in your values:
-   ```bash
-   cp .env.example .env
-   ```
-4. Configure your bot settings in `.env`
-
-## Configuration
-
-Edit the `.env` file with your settings:
-
-```env
-# Bot and Server Configuration
-DISCORD_TOKEN=your_discord_token_here
-GUILD_ID=your_guild_id_here
-TXADMIN_URL=http://your-server:port
-TXADMIN_API_TOKEN=your_txadmin_token_here
-
-# Channel Configuration
-LOG_CHANNEL_ID=your_log_channel_id
-ANNOUNCEMENT_CHANNEL_ID=your_announcement_channel_id
-
-# Role Configuration
-ADMIN_ROLE_ID=your_admin_role_id
-MODERATOR_ROLE_ID=your_moderator_role_id
-
-# Webhook Configuration
-WEBHOOK_URL=your_discord_webhook_url_here    # For detailed command logging
-MODERATOR_ROLE_ID=your_moderator_role_id
-```
-
 ## Command Documentation
 
 This section provides detailed documentation for all available commands. Each command is marked with its required permission level and includes syntax, examples, and notes about usage.
@@ -335,29 +298,6 @@ If you need help with the bot:
 - txAdmin API
 - SQLite/MySQL Database
 
-#### Project Structure
-```
-src/
-├── commands/         # Command implementations
-├── events/          # Event handlers
-├── utils/           # Utility functions
-└── managers/        # Feature managers
-
-tests/               # Test suites
-docs/               # Documentation
-```
-
-#### Setup for Development
-
-1. Clone the repository
-2. Install dependencies
-3. Copy .env.example to .env
-4. Configure environment variables
-5. Run in development mode:
-   ```bash
-   npm run dev
-   ```
-
 ### Documentation
 
 Detailed documentation is available for various aspects of the bot:
@@ -376,10 +316,6 @@ Detailed documentation is available for various aspects of the bot:
 - QBCore Framework integration details
 - txAdmin API usage and endpoints
 - Discord API features and limitations
-
-For more detailed documentation on advanced features and internals, see:
-- `docs/advanced_features.md` - Detailed technical documentation
-- `SETUP_AND_USAGE.txt` - Quick start guide
 
 ## Support and Community
 
