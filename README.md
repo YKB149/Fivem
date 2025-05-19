@@ -47,42 +47,6 @@ Each feature includes:
 - FiveM Server with txAdmin
 - QBCore Framework
 
-## Installation
-
-1. Clone this repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Copy `.env.example` to `.env` and fill in your values:
-   ```bash
-   cp .env.example .env
-   ```
-4. Configure your bot settings in `.env`
-
-## Configuration
-
-Edit the `.env` file with your settings:
-
-```env
-# Bot and Server Configuration
-DISCORD_TOKEN=your_discord_token_here
-GUILD_ID=your_guild_id_here
-TXADMIN_URL=http://your-server:port
-TXADMIN_API_TOKEN=your_txadmin_token_here
-
-# Channel Configuration
-LOG_CHANNEL_ID=your_log_channel_id
-ANNOUNCEMENT_CHANNEL_ID=your_announcement_channel_id
-
-# Role Configuration
-ADMIN_ROLE_ID=your_admin_role_id
-MODERATOR_ROLE_ID=your_moderator_role_id
-
-# Webhook Configuration
-WEBHOOK_URL=your_discord_webhook_url_here    # For detailed command logging
-MODERATOR_ROLE_ID=your_moderator_role_id
-```
 
 ## Command Documentation
 
