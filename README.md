@@ -337,7 +337,7 @@ Report security vulnerabilities responsibly:
 
 
 ---
-© 2025 Developed By @ykblmao. All rights reserved.
-# For Purchase contact on discord 
+# © 2025 Developed By @ykblmao. All rights reserved.
+## For Purchase contact on discord 
 
 
