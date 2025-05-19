@@ -337,6 +337,7 @@ Report security vulnerabilities responsibly:
 
 
 ---
-© 2025 AutomateX Studio. All rights reserved.
+© 2025 Developed By @ykblmao. All rights reserved.
+# For Purchase contact on discord 
 
 
