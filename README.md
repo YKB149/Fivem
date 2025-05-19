@@ -1,8 +1,9 @@
 (documentation/purposal for advance and powerful discord bot, contant @ykblmao on discord for purchase)
 
+
 # FiveM Discord Bot
 
-A advance & powerful Discord bot for managing FiveM servers with QBCore and txAdmin integration. This bot provides comprehensive server management capabilities through Discord slash commands, with a focus on security, stability, and ease of use.
+A powerful Discord bot for managing FiveM servers with QBCore and txAdmin integration. This bot provides comprehensive server management capabilities through Discord slash commands, with a focus on security, stability, and ease of use.
 
 ## Key Features
 
@@ -49,6 +50,42 @@ Each feature includes:
 - FiveM Server with txAdmin
 - QBCore Framework
 
+## Installation
+
+1. Clone this repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Copy `.env.example` to `.env` and fill in your values:
+   ```bash
+   cp .env.example .env
+   ```
+4. Configure your bot settings in `.env`
+
+## Configuration
+
+Edit the `.env` file with your settings:
+
+```env
+# Bot and Server Configuration
+DISCORD_TOKEN=your_discord_token_here
+GUILD_ID=your_guild_id_here
+TXADMIN_URL=http://your-server:port
+TXADMIN_API_TOKEN=your_txadmin_token_here
+
+# Channel Configuration
+LOG_CHANNEL_ID=your_log_channel_id
+ANNOUNCEMENT_CHANNEL_ID=your_announcement_channel_id
+
+# Role Configuration
+ADMIN_ROLE_ID=your_admin_role_id
+MODERATOR_ROLE_ID=your_moderator_role_id
+
+# Webhook Configuration
+WEBHOOK_URL=your_discord_webhook_url_here    # For detailed command logging
+MODERATOR_ROLE_ID=your_moderator_role_id
+```
 
 ## Command Documentation
 
@@ -128,6 +165,23 @@ Real estate and property control system.
 
 ### Server Management Commands
 
+#### Server Control Commands - Admin Only
+Tools for managing core server functionality.
+
+| Command | Description | Example | Details Shown |
+|---------|-------------|---------|---------------|
+| `/restartserver <reason>` | Restart the FiveM server with warning | `/restartserver "Maintenance"` | • 1 minute warning<br>• Logs shutdown info<br>• Notifies players |
+| `/detectddos` | Check for potential DDoS attacks | `/detectddos` | • CPU/Memory usage<br>• Connection rates<br>• Network traffic<br>• Suspicious IPs |
+
+#### Server Management (/manage) - Admin Only
+Advanced server configuration and maintenance.
+
+| Command | Description | Example | Parameters |
+|---------|-------------|---------|------------|
+| `/manage whitelist <action> <identifier>` | Manage server whitelist | `/manage whitelist add license:123` | Actions:<br>• add - Add to whitelist<br>• remove - Remove from whitelist<br>• check - Check status |
+| `/manage resources <action> <resource>` | Control server resources | `/manage resources restart qb-core` | Actions:<br>• start - Start resource<br>• stop - Stop resource<br>• restart - Restart resource |
+| `/manage backup <action>` | Control server backups | `/manage backup create` | Actions:<br>• create - New backup<br>• list - Show backups<br>• restore - Restore backup |
+
 #### Analytics (/analytics) - Admin Only
 Comprehensive server monitoring and statistics system.
 
@@ -158,84 +212,12 @@ Server maintenance and system management tools.
 | `/utility repairvehicles <radius> <location>` | Area vehicle repair | `/utility repairvehicles 50 legion` | Mass vehicle fix |
 | `/utility savecar <player>` | Save vehicle | `/utility savecar 123` | Persists to database |
 
-### Server Administration Commands
-
-#### Moderation Commands
-Core server moderation tools with logging.
-
-| Command | Permission | Description | Example | Notes |
-|---------|------------|-------------|---------|-------|
-| `/kick <playerid> <reason>` | Mod | Remove player from server | `/kick 123 "Breaking rules"` | Immediate effect |
-| `/ban <playerid> <duration> <reason>` | Admin | Ban player with duration | `/ban 123 7d "Cheating"` | Durations: 1h, 1d, 7d, permanent |
-| `/warn <playerid> <reason>` | Mod | Issue warning to player | `/warn 123 "Language warning"` | Tracked in database |
-| `/checkban <identifier>` | Mod | Check ban status | `/checkban steam:123456` | Shows ban history |
-| `/unban <identifier>` | Admin | Remove ban | `/unban steam:123456` | Requires reason |
-| `/ipban <ip> <reason> [duration]` | Admin | Ban IP address | `/ipban 1.2.3.4 "DDoS" 30d` | Network-level |
-
-#### World Control Commands
-Environment and world state management.
-
-| Command | Permission | Description | Example | Options |
-|---------|------------|-------------|---------|---------|
-| `/settime <hour> <minute> [freeze]` | Mod | Set server time | `/settime 12 0 true` | 24-hour format<br>Optional time freeze |
-| `/setweather <type>` | Mod | Change weather | `/setweather CLEAR` | Types: CLEAR, RAIN, THUNDER, FOGGY, OVERCAST, CLOUDS |
-
-#### Teleport Commands - Admin Only
-Advanced player positioning system.
-
-| Command | Description | Example | Notes |
-|---------|-------------|---------|-------|
-| `/teleport toplayer <source> <target>` | Move player to player | `/teleport toplayer 123 456` | Permission checked |
-| `/teleport tocoords <player> <x> <y> <z>` | Move to coordinates | `/teleport tocoords 123 100 200 300` | Safe landing |
-| `/teleportall <location>` | Mass teleport | `/teleportall legion` | Preset locations:<br>• legion<br>• airport<br>• pd<br>• hospital |
-
-### Discord Management Commands
-
-#### User Management
-Core Discord user moderation tools.
-
-| Command | Permission | Description | Example | Notes |
-|---------|------------|-------------|---------|-------|
-| `/timeout <user> <duration> <reason>` | Mod | Temporary timeout | `/timeout @user 1h "Spam"` | Max 28 days |
-| `/mute <user> <reason>` | Mod | Permanent mute | `/mute @user "Inappropriate behavior"` | All channels |
-| `/unmute <user> <reason>` | Mod | Remove mute | `/unmute @user "Time served"` | Requires reason |
-| `/discordkick <user> <reason>` | Mod | Remove from server | `/discordkick @user "Breaking rules"` | Can rejoin |
-| `/discordban <user> <reason> [days] [permanent]` | Admin | Ban from server | `/discordban @user "Severe violation" 7 true` | Optional message deletion |
-| `/discordunban <userid> <reason>` | Admin | Remove ban | `/discordunban 123456789 "Appeal accepted"` | Uses user ID |
-
-#### Role Management
-User role and permission controls.
-
-| Command | Permission | Description | Example | Notes |
-|---------|------------|-------------|---------|-------|
-| `/addrole <user> <role> <reason>` | Mod | Add role to user | `/addrole @user @VIP "Donation"` | Permission checked |
-| `/removerole <user> <role> <reason>` | Mod | Remove role | `/removerole @user @VIP "Expired"` | Logs change |
-
-#### Channel Management
-Channel control and moderation tools.
-
-| Command | Permission | Description | Example | Notes |
-|---------|------------|-------------|---------|-------|
-| `/lock <reason>` | Mod | Lock channel | `/lock "Maintenance"` | Prevents messages |
-| `/unlock <reason>` | Mod | Unlock channel | `/unlock "Maintenance complete"` | Restores access |
-| `/slowmode <seconds> <reason>` | Mod | Set message delay | `/slowmode 10 "High traffic"` | 0-21600 seconds |
-| `/purge <amount> [user]` | Mod | Delete messages | `/purge 50 @user` | Max 100 messages |
-
-#### Information Commands
-User and server information tools.
+### Server Monitoring
+Real-time server state information.
 
 | Command | Permission | Description | Example | Details Shown |
 |---------|------------|-------------|---------|---------------|
-| `/userinfo [user]` | Mod | Show user details | `/userinfo @user` | • Join date<br>• Roles<br>• Status<br>• Account age |
-
-### System Status Commands
-
-#### Server Monitoring
-Server state and configuration commands.
-
-| Command | Permission | Description | Example | Details Shown |
-|---------|------------|-------------|---------|---------------|
-| `/status` | Mod | Server status check | `/status` | • Player count<br>• Resource usage<br>• Uptime<br>• Queue info |
+| `/status` | Mod | Check server status | `/status` | • Server status<br>• Player count/list<br>• Resource count<br>• Uptime<br>• Performance metrics |
 | `/botstatus <status> <type>` | Admin | Set bot status | `/botstatus "Playing FiveM" "PLAYING"` | Types:<br>• PLAYING<br>• WATCHING<br>• LISTENING<br>• COMPETING |
 
 #### Announcements
@@ -353,6 +335,28 @@ If you need help with the bot:
 - txAdmin API
 - SQLite/MySQL Database
 
+#### Project Structure
+```
+src/
+├── commands/         # Command implementations
+├── events/          # Event handlers
+├── utils/           # Utility functions
+└── managers/        # Feature managers
+
+tests/               # Test suites
+docs/               # Documentation
+```
+
+#### Setup for Development
+
+1. Clone the repository
+2. Install dependencies
+3. Copy .env.example to .env
+4. Configure environment variables
+5. Run in development mode:
+   ```bash
+   npm run dev
+   ```
 
 ### Documentation
 
@@ -373,6 +377,9 @@ Detailed documentation is available for various aspects of the bot:
 - txAdmin API usage and endpoints
 - Discord API features and limitations
 
+For more detailed documentation on advanced features and internals, see:
+- `docs/advanced_features.md` - Detailed technical documentation
+- `SETUP_AND_USAGE.txt` - Quick start guide
 
 ## Support and Community
 
