@@ -126,6 +126,23 @@ Real estate and property control system.
 | `/property remove <property>` | Remove ownership | `/property remove house1` | Returns to market |
 | `/property access <property> <action> [player]` | Control access | `/property access house1 addaccess 123` | Actions:<br>• lock/unlock - Security<br>• addaccess/removeaccess - Keys |
 
+### Economy Commands
+
+#### Economy Control
+| Command | Description | Example | Notes |
+|---------|-------------|---------|-------|
+| `/givemoney <player> <type> <amount>` | Give money to player | `/givemoney 123 cash 5000` | Types: cash, bank, crypto |
+| `/giveitem <player> <item> <amount>` | Give items to player | `/giveitem 123 lockpick 1` | Server items only |
+
+### Teleport Commands
+
+#### Teleport Control (/teleport) - Admin Only
+| Command | Description | Example | Notes |
+|---------|-------------|---------|-------|
+| `/teleport toplayer <source> <target>` | Move player to player | `/teleport toplayer 123 456` | Permission checked |
+| `/teleport tocoords <player> <x> <y> <z>` | Move to coordinates | `/teleport tocoords 123 100 200 300` | Safe landing |
+| `/teleportall <location>` | Mass teleport | `/teleportall legion` | Preset locations:<br>• legion<br>• airport<br>• pd<br>• hospital |
+
 ### Server Management Commands
 
 #### Server Control Commands - Admin Only
@@ -175,6 +192,66 @@ Server maintenance and system management tools.
 | `/utility repairvehicles <radius> <location>` | Area vehicle repair | `/utility repairvehicles 50 legion` | Mass vehicle fix |
 | `/utility savecar <player>` | Save vehicle | `/utility savecar 123` | Persists to database |
 
+### Discord Management Commands
+
+#### Role Management (/role) - Admin Only
+| Command | Description | Example | Notes |
+|---------|-------------|---------|-------|
+| `/addrole <user> <role> <reason>` | Add role to user | `/addrole @user @VIP "Donation"` | Permission checked |
+| `/removerole <user> <role> <reason>` | Remove role | `/removerole @user @VIP "Expired"` | Logs change |
+
+#### Channel Management - Mod Only
+| Command | Description | Example | Notes |
+|---------|-------------|---------|-------|
+| `/lock <reason>` | Lock channel | `/lock "Maintenance"` | Prevents messages |
+| `/unlock <reason>` | Unlock channel | `/unlock "Maintenance complete"` | Restores access |
+| `/slowmode <seconds> <reason>` | Set message delay | `/slowmode 10 "High traffic"` | 0-21600 seconds |
+| `/purge <amount> [user]` | Delete messages | `/purge 50 @user` | Max 100 messages |
+
+#### User Moderation - Admin Only
+| Command | Description | Example | Notes |
+|---------|-------------|---------|-------|
+| `/discordban <user> <reason> [days] [permanent]` | Ban from server | `/discordban @user "Rule breach" 7 true` | Optional message deletion |
+| `/discordunban <userid> <reason>` | Remove ban | `/discordunban 123456789 "Appeal accepted"` | Uses user ID |
+| `/discordkick <user> <reason>` | Remove from server | `/discordkick @user "Breaking rules"` | Can rejoin |
+| `/timeout <user> <duration> <reason>` | Temporary timeout | `/timeout @user 1h "Spam"` | Max 28 days |
+| `/mute <user> <reason>` | Permanent mute | `/mute @user "Inappropriate"` | All channels |
+| `/unmute <user> <reason>` | Remove mute | `/unmute @user "Time served"` | Requires reason |
+
+### Server Moderation Commands
+
+#### Ban Management - Admin Only
+| Command | Description | Example | Notes |
+|---------|-------------|---------|-------|
+| `/ban <player> <duration> <reason>` | Ban player | `/ban 123 7d "Cheating"` | Duration: 1h-permanent |
+| `/tempban <player> <duration> <reason>` | Temporary ban | `/tempban 123 24h "Toxicity"` | Max 30 days |
+| `/unban <identifier>` | Remove ban | `/unban steam:123456` | Requires reason |
+| `/checkban <identifier>` | Check ban status | `/checkban steam:123456` | Shows history |
+| `/ipban <ip> <reason> [duration]` | Ban IP address | `/ipban 1.2.3.4 "DDoS" 30d` | Network-level |
+
+### World Control Commands - Admin Only
+
+#### Time and Weather
+| Command | Description | Example | Notes |
+|---------|-------------|---------|-------|
+| `/settime <hour> <minute> [freeze]` | Set server time | `/settime 12 0 true` | 24-hour format |
+| `/setweather <type>` | Change weather | `/setweather CLEAR` | Types: CLEAR, RAIN, THUNDER, FOGGY, OVERCAST, CLOUDS |
+
+### Utility and Information Commands
+
+#### Basic Tools
+| Command | Permission | Description | Example | Notes |
+|---------|------------|-------------|---------|-------|
+| `/help [command]` | None | Get command help | `/help control` | Shows detailed command usage |
+| `/ping` | None | Check bot latency | `/ping` | Shows API response time |
+| `/userinfo <user>` | Mod | Get user information | `/userinfo @user` | Shows roles, join date, etc. |
+
+#### Player Information
+| Command | Description | Example | Notes |
+|---------|-------------|---------|-------|
+| `/playerinfo <player>` | View detailed player info | `/playerinfo 123` | Shows:<br>• Character info<br>• Inventory<br>• Job/Gang<br>• Licenses |
+| `/giveitem <player> <item> <amount>` | Give items to player | `/giveitem 123 lockpick 1` | Inventory management |
+
 ### Server Monitoring
 Real-time server state information.
 
@@ -192,24 +269,46 @@ Server-wide communication tools.
 
 ## Statistics
 
-- **Total Commands**: 90 unique commands
-  - 48 main slash commands
-  - 42 subcommands across 8 main commands
-  - Categories:
-    - Player Management (control, setjob, etc.)
-    - Server Administration (manage, utility, analytics, etc.) 
-    - Vehicle System (vehiclecontrol, fixvehicle, etc.)
-    - Economy Features (business, property, etc.)
-    - Moderation Tools (ban, kick, warn, etc.)
-    - Discord Integration (mute, roles, etc.)
+- **Total Commands**: 81 commands total
+  - **48 Base Commands** across 10 categories:
+    - Announcements (1): announce
+    - Discord Management (13): addrole, discordban, discordkick, etc.
+    - Economy (4): business, giveitem, givemoney, property
+    - Moderation (7): ban, checkban, ipban, etc.
+    - Player Management (6): control, playerinfo, setjob, etc.
+    - Server Management (7): analytics, botstatus, detectddos, etc.
+    - Teleport (2): teleport, teleportall
+    - Tools (2): help, ping
+    - Vehicles (4): fixvehicle, garage, spawnvehicle, vehiclecontrol
+    - World Control (2): settime, setweather
+  
+  - **33 Subcommands** across 7 parent commands:
+    - /control (11): freeze, heal, screenshot, weapons, addmoney, setjob, gang, noclip, godmode, invisible, stamina
+    - /manage (3): whitelist, resources, backup
+    - /analytics (4): resources, players, economy, activity
+    - /business (3): info, employees, funds
+    - /vehiclecontrol (4): tune, color, plate, fuel
+    - /garage (4): list, remove, transfer, locate
+    - /property (4): list, assign, remove, access
 
-- **Utility Functions**: ~30 internal functions
-  - Permission Management
-  - Command Validation
-  - Logging & Monitoring
-  - API Integration
-  - Data Management
-  - Error Handling
+- **Subcommands**:
+  - /control: 11 subcommands
+  - /manage: 3 subcommands (whitelist, resources, backup)
+  - /analytics: 4 subcommands (resources, players, economy, activity)
+  - /business: 3 subcommands (info, employees, funds)
+  - /vehiclecontrol: 4 subcommands (tune, color, plate, fuel)
+  - /garage: 4 subcommands (list, remove, transfer, locate)
+  - /property: 4 subcommands (list, assign, remove, access)
+
+- **Utility Functions**: 10 core utility modules
+  - Permission Management (permissionUtil)
+  - Command Validation (validator)
+  - Logging System (logger, webhookLogger)
+  - API Integration (txAdminAPI)
+  - Error Handling (circuitBreaker)
+  - Rate Limiting (cooldownManager, requestQueue)
+  - UI Components (embedUtil)
+  - Health Monitoring (webhookHealth)
 
 - **Environment Variables**: 8 required variables
   - Bot Configuration (2)
@@ -339,5 +438,6 @@ Report security vulnerabilities responsibly:
 ---
 # © 2025 Developed By @ykblmao. All rights reserved.
 ## For Purchase contact on discord 
+
 
 
